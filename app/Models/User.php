@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 
 class User extends Authenticatable
 {
@@ -21,7 +23,34 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
+
+    public function approvedOrders()
+    {
+        return $this->hasMany(Order::class, 'approved_by');
+    }
+
+    public function verifiedPayments()
+    {
+        return $this->hasMany(Payment::class, 'verified_by');
+    }
+
+    // Helper
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isKasir(): bool
+    {
+        return $this->role === 'kasir';
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return in_array($this->role, ['admin', 'kasir']);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

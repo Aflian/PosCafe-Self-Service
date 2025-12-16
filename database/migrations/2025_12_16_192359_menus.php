@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('category_id')
                   ->constrained('categories')
                   ->cascadeOnDelete();
-        
+            $table->string('foto')->nullable();
             $table->string('nama_menu');
             $table->decimal('harga', 12, 2);
             $table->boolean('is_active')->default(true);

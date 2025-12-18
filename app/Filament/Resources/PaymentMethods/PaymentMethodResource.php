@@ -29,6 +29,10 @@ class PaymentMethodResource extends Resource
     {
         return PaymentMethodsTable::configure($table);
     }
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->isAdmin();
+    }
 
     public static function getRelations(): array
     {

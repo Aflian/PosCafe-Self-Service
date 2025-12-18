@@ -2,9 +2,8 @@
 
 namespace App\Filament\Resources\Financials\Schemas;
 
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\TextInput;
 
 class FinancialForm
 {
@@ -12,14 +11,10 @@ class FinancialForm
     {
         return $schema
             ->components([
-                TextInput::make('order_id')
-                    ->required()
-                    ->numeric(),
-                DatePicker::make('tanggal')
-                    ->required(),
-                TextInput::make('pemasukan')
-                    ->required()
-                    ->numeric(),
+                TextInput::make('order.kode_order')->disabled(),
+                TextInput::make('pemasukan')->disabled(),
+                TextInput::make('metode_pembayaran')->disabled(),
+                TextInput::make('tanggal')->disabled(),
             ]);
     }
 }

@@ -46,12 +46,16 @@ class OrderApprovalService
                 'approved_at'  => now(),
             ]);
 
-            // 5️⃣ Catat keuangan (ANTI DUPLIKASI)
+            // 5️⃣ CATAT KEUANGAN (ANTI DUPLIKASI & LENGKAP)
             Financial::firstOrCreate(
-                ['order_id' => $order->id],
                 [
-                    'tanggal'    => Carbon::today(),
-                    'pemasukan'  => $order->total_harga,
+                    'order_id' => $order->id,
+                ],
+                [
+                    'payment_id'        => $payment->id,
+                    'tanggal'           => Carbon::today(),
+                    'pemasukan'            => $order->total_harga,
+                    'metode_pembayaran' => $payment->paymentMethod->nama,
                 ]
             );
 
@@ -69,6 +73,7 @@ class OrderApprovalService
     {
         DB::transaction(function () use ($order, $kasirId) {
 
+            // 🔒 Lock order
             $order->lockForUpdate();
 
             if ($order->status !== 'menunggu_verifikasi') {

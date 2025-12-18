@@ -2,11 +2,8 @@
 
 namespace App\Filament\Resources\Financials\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
 
 class FinancialsTable
 {
@@ -14,30 +11,35 @@ class FinancialsTable
     {
         return $table
             ->columns([
-                TextColumn::make('order_id')
-                    ->numeric()
-                    ->sortable(),
+
+                // 🔢 Kode Order
+                TextColumn::make('order.kode_order')
+                    ->label('Kode Order')
+                    ->searchable(),
+
+                // 📅 Tanggal Transaksi
                 TextColumn::make('tanggal')
-                    ->date()
+                    ->label('Tanggal')
+                    ->date('d M Y')
                     ->sortable(),
+
+                // 💰 Pemasukan (FIX: dari amount → pemasukan)
                 TextColumn::make('pemasukan')
-                    ->numeric()
+                    ->label('Nominal')
+                    ->money('IDR', locale: 'id')
                     ->sortable(),
+
+                // 💳 Metode Pembayaran (via relasi)
+                TextColumn::make('order.payment.paymentMethod.nama')
+                    ->label('Metode Pembayaran')
+                    ->badge(),
+
+                // 🕒 Dicatat
                 TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->label('Dicatat')
+                    ->dateTime('d M Y H:i')
+                    ->sortable(),
             ])
-            ->filters([
-                //
-            ])
-            ->recordActions([
-                EditAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->defaultSort('tanggal', 'desc');
     }
 }

@@ -2,12 +2,14 @@
 
 namespace App\Filament\Kasir\Resources\Orders\Tables;
 
-use App\Services\OrderApprovalService;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Actions\Action;
+use App\Services\OrderApprovalService;
+use Filament\Forms\Components\Repeater;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
 
 class OrdersTable
 {
@@ -101,6 +103,55 @@ class OrdersTable
                         $record->update(['status' => 'selesai']);
                         $record->table()->update(['status' => 'kosong']);
                     }),
+                    Action::make('detail')
+                    ->label('Detail')
+                    ->icon('heroicon-o-eye')
+                    ->color('secondary')
+                    ->modalHeading('Detail Pesanan')
+                    ->modalSubmitAction(false) // ❌ tanpa tombol submit
+                    ->modalCancelActionLabel('Tutup')
+                    ->form(fn ($record) => [
+                        TextInput::make('kode_order')
+                            ->label('Kode Order')
+                            ->default($record->kode_order)
+                            ->disabled(),
+                
+                        TextInput::make('meja')
+                            ->label('Meja')
+                            ->default($record->table->nama ?? '-')
+                            ->disabled(),
+                
+                        TextInput::make('total')
+                            ->label('Total Harga')
+                            ->default('Rp ' . number_format($record->total_harga, 0, ',', '.'))
+                            ->disabled(),
+                
+                        Repeater::make('items')
+                            ->label('Daftar Pesanan')
+                            ->schema([
+                                TextInput::make('menu')
+                                    ->label('Menu')
+                                    ->disabled(),
+                
+                                TextInput::make('qty')
+                                    ->label('Qty')
+                                    ->disabled(),
+                
+                                TextInput::make('harga')
+                                    ->label('Harga')
+                                    ->disabled(),
+                            ])
+                            ->default(
+                                $record->items->map(fn ($item) => [
+                                    'menu'   => $item->menu->nama,
+                                    'qty'    => $item->qty,
+                                    'harga'  => 'Rp ' . number_format($item->harga, 0, ',', '.'),
+                                ])->toArray()
+                            )
+                            ->columns(3)
+                            ->disabled(),
+                    ]),
+                
             ])
 
             ->defaultSort('created_at', 'desc');

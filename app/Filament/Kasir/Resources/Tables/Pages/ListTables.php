@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Kasir\Resources\Orders\Pages;
+namespace App\Filament\Kasir\Resources\Tables\Pages;
 
-use App\Filament\Kasir\Resources\Orders\OrderResource;
+use App\Filament\Kasir\Resources\Tables\TableResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
-class ListOrders extends ListRecords
+class ListTables extends ListRecords
 {
-    protected static string $resource = OrderResource::class;
+    protected static string $resource = TableResource::class;
 
     protected function getHeaderActions(): array
     {

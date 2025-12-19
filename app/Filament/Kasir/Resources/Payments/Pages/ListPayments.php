@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Kasir\Resources\Orders\Pages;
+namespace App\Filament\Kasir\Resources\Payments\Pages;
 
-use App\Filament\Kasir\Resources\Orders\OrderResource;
+use App\Filament\Kasir\Resources\Payments\PaymentResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
-class ListOrders extends ListRecords
+class ListPayments extends ListRecords
 {
-    protected static string $resource = OrderResource::class;
+    protected static string $resource = PaymentResource::class;
 
     protected function getHeaderActions(): array
     {

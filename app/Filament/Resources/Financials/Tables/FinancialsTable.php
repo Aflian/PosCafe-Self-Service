@@ -30,7 +30,7 @@ class FinancialsTable
                     ->sortable(),
 
                 // 💳 Metode Pembayaran (via relasi)
-                TextColumn::make('order.payment.paymentMethod.nama')
+                TextColumn::make('order.payment.paymentMethod.nama_metode')
                     ->label('Metode Pembayaran')
                     ->badge(),
 

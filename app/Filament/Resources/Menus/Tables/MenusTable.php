@@ -17,11 +17,11 @@ class MenusTable
                     ->label('Foto')
                     ->circular(),
 
-                TextColumn::make('nama')
+                TextColumn::make('nama_menu')
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('kategori.nama')
+                TextColumn::make('category.nama_kategori')
                     ->label('Kategori')
                     ->sortable(),
 
@@ -34,6 +34,6 @@ class MenusTable
                     ->onColor('success')
                     ->offColor('gray'),
             ])
-            ->defaultSort('nama');
+            ->defaultSort('nama_menu');
     }
 }

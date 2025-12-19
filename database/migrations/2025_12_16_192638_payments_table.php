@@ -23,7 +23,7 @@ return new class extends Migration
                   ->restrictOnDelete();
         
             $table->decimal('nominal', 12, 2);
-            $table->string('bukti_pembayaran');
+            $table->string('bukti_pembayaran')->nullable();
         
             $table->enum('status', ['pending', 'valid', 'invalid'])
                   ->default('pending');

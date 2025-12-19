@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Kasir\StrukController;
 use App\Http\Controllers\FinancialExportController;
 
 Route::get('/', function () {
@@ -18,3 +19,6 @@ Route::middleware(['auth'])
             [FinancialExportController::class, 'pdf']
         );
     });
+    
+ Route::get('/kasir/order/{order}/struk', [StrukController::class, 'print'])
+    ->middleware(['auth'])->name('struk');

@@ -19,10 +19,10 @@ class PaymentsTable
                 TextColumn::make('order.table.kode_meja')
                     ->label('Meja'),
 
-                TextColumn::make('paymentMethod.nama')
+                TextColumn::make('paymentMethod.nama_metode')
                     ->label('Metode'),
 
-                TextColumn::make('amount')
+                TextColumn::make('nominal')
                     ->label('Nominal')
                     ->money('IDR'),
 

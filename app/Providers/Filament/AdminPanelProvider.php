@@ -6,10 +6,12 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Pages\Dashboard;
 use Filament\Support\Colors\Color;
+use App\Http\Middleware\adminCheck;
 use Filament\Widgets\AccountWidget;
 use App\Filament\Widgets\OrderAktif;
 use App\Filament\Widgets\MejaTerpakai;
 use App\Filament\Widgets\OmzetHariIni;
+use App\Http\Middleware\CheckUserRole;
 use Filament\Widgets\FilamentInfoWidget;
 use Filament\Http\Middleware\Authenticate;
 use Illuminate\Session\Middleware\StartSession;
@@ -58,9 +60,11 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+               
             ])
             ->authMiddleware([
                 Authenticate::class,
+                adminCheck::class,
             ]);
     }
 }

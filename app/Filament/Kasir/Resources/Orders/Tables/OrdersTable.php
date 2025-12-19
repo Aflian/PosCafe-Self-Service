@@ -23,7 +23,7 @@ class OrdersTable
                     ->searchable(),
 
                 // 🪑 Nama Meja
-                TextColumn::make('table.nama')
+                TextColumn::make('table.kode_meja')
                     ->label('Meja'),
 
                 // 💰 Total Harga
@@ -116,9 +116,9 @@ class OrdersTable
                             ->default($record->kode_order)
                             ->disabled(),
                 
-                        TextInput::make('meja')
+                        TextInput::make('kode_meja')
                             ->label('Meja')
-                            ->default($record->table->nama ?? '-')
+                            ->default($record->table->kode_meja ?? '-')
                             ->disabled(),
                 
                         TextInput::make('total')
@@ -129,7 +129,7 @@ class OrdersTable
                         Repeater::make('items')
                             ->label('Daftar Pesanan')
                             ->schema([
-                                TextInput::make('menu')
+                                TextInput::make('menu_id.nama_menu')
                                     ->label('Menu')
                                     ->disabled(),
                 

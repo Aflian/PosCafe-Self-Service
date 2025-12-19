@@ -1,0 +1,128 @@
+body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    padding: 16px;
+    background: #f8fafc;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.meja {
+    background: #111827;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+.category {
+    margin-top: 24px;
+    font-size: 18px;
+    border-left: 4px solid #22c55e;
+    padding-left: 8px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.menu-card {
+    background: white;
+    border-radius: 16px;
+    padding: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.05);
+}
+
+.menu-card h3 {
+    font-size: 16px;
+    margin: 0 0 6px;
+}
+
+.price {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.menu-card button {
+    width: 100%;
+    padding: 8px;
+    border-radius: 12px;
+    border: none;
+    background: #22c55e;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.status {
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.status.menunggu_verifikasi { background: #fde68a; }
+.status.diproses { background: #bfdbfe; }
+.status.disajikan { background: #bbf7d0; }
+.status.selesai { background: #22c55e; color: white; }
+.status.ditolak { background: #fecaca; }
+
+input[type="number"] {
+    width: 60px;
+    padding: 6px;
+    margin-right: 8px;
+}
+
+a {
+    display: block;
+    margin-top: 20px;
+    background: #22c55e;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    border-radius: 12px;
+    text-decoration: none;
+}
+.cart-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.cart-actions form {
+    display: inline-flex;
+}
+
+.btn-remove {
+    background: #ef4444;
+    color: white;
+}
+
+.cart-total {
+    margin-top: 20px;
+    padding: 16px;
+    background: #f1f5f9;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+.btn-back {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    background: #e5e7eb;
+    padding: 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #111827;
+}

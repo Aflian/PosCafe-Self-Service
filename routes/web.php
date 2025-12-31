@@ -74,7 +74,7 @@ Route::get('/order/{kode}/tracking', [CustomerController::class, 'tracking'])
 
 // 🔹 Halaman pembayaran pelanggan
 Route::get('/order/{kode}/payment', [CustomerController::class, 'payment'])
-    ->name('pelanggan.payment');
+    ->name('pelanggan.pembayaran');
 
 // 🔹 Simpan pembayaran pelanggan
 Route::post('/order/payment', [CustomerController::class, 'storePayment'])
